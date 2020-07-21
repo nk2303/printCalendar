@@ -1,13 +1,18 @@
 //if size = 3 which is minimum, then 
 public class Calendar {
     public static void main(String[] args){
+        askUser();
         int lengthOfCalendar = 5*7 + 1;
+
         drawMonth(10, lengthOfCalendar);
         for ( int week = 0; week <= 4; week++) {
             drawBorder(lengthOfCalendar);
             printLast("=");
             drawRow(week, 5); 
          }
+        drawBorder(lengthOfCalendar);
+        printLast("=");
+        displayDate(10, 30);
     }
 
     public static void drawMonth(int month, int lengthOfCalendar) {
@@ -22,16 +27,24 @@ public class Calendar {
         }
         printLast("|");
         if (size > 4){
-            for ( int day = 1; day <= 7; day++ ) {
-                drawCharactor("|");
-                printCharacterMultipleTimes(" ", size - 1);
+            for (int i = 0; i < (int)(size/2 - 1); i++) {
+                for ( int day = 1; day <= 7; day++ ) {
+                    drawCharactor("|");
+                    printCharacterMultipleTimes(" ", size - 1);
+                }
+                printLast("|");
             }
-            printLast("|");
+
         }
     }
 
     public static void displayDate(int month, int day) {
-        
+        System.out.println("Month: " + month);
+        System.out.println("Day: " + day);
+    }
+
+    public static void askUser() {
+        System.out.println("What date would you like to look at? (mm/dd)");
     }
 
     public static int monthFromDate(String date) {
