@@ -1,18 +1,21 @@
 //if size = 3 which is minimum, then 
+import java.util.Scanner;
 public class Calendar {
     public static void main(String[] args){
-        askUser();
-        int lengthOfCalendar = 5*7 + 1;
+        String date = askUserForDate();
+        int month = monthFromDate(date);
+        int day = dayFromDate(date);
+        int lengthOfCalendar = 10*7 + 1;
 
-        drawMonth(10, lengthOfCalendar);
+        drawMonth(month, lengthOfCalendar);
         for ( int week = 0; week <= 4; week++) {
             drawBorder(lengthOfCalendar);
             printLast("=");
-            drawRow(week, 5); 
+            drawRow(week, 10); 
          }
         drawBorder(lengthOfCalendar);
         printLast("=");
-        displayDate(10, 30);
+        displayDate(month, day);
     }
 
     public static void drawMonth(int month, int lengthOfCalendar) {
@@ -43,16 +46,29 @@ public class Calendar {
         System.out.println("Day: " + day);
     }
 
-    public static void askUser() {
-        System.out.println("What date would you like to look at? (mm/dd)");
+    public static String askUserForDate() {
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.println("What date would you like to look at? (mm/dd)");
+            String date = scanner.next();
+            if (date.length() != 5) {
+                System.out.println("Sorry, taht input is invalid.");
+                System.out.println("What date would you like to look at? (mm/dd)");
+                date = scanner.next();
+            }
+            
+            return date;
+        }
+       
     }
 
     public static int monthFromDate(String date) {
-        return 1;
+        int month = Integer.parseInt(date.substring(0,2));
+        return month;
     }
 
     public static int dayFromDate(String date) {
-        return 1;
+        int day = Integer.parseInt(date.substring(3,5));
+        return day;
     }
 
     private static void drawEqualSignLine(int times) {
