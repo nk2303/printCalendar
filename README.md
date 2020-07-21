@@ -1,7 +1,7 @@
 # printCalendar
 
 Size 10:
-
+```
 What date would you like to look at? (mm/dd)
 04/17
 
@@ -39,9 +39,9 @@ What date would you like to look at? (mm/dd)
 =======================================================================
 Month: 4
 Day: 17
-
+```
 Size 4:
-
+```
 What date would you like to look at? (mm/dd)
 03/23
 
@@ -64,7 +64,7 @@ What date would you like to look at? (mm/dd)
 ====================================
 Month: 3
 Day: 23
-
+```
 
 # Compile
 javac Calendar.java
