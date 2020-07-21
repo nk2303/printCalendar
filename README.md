@@ -1,7 +1,7 @@
 # printCalendar
 
 # Compile
-javac printCalendar.java
+javac Calendar.java
 
 # Run
-java printCalendar 
+java Calendar 
