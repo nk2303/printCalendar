@@ -1,59 +1,61 @@
-//if size = 3 which is minimum, then 
 import java.util.Scanner;
+import java.util.Calendar;
 
 public class CalendarPrinter2 {
     public static void main(String[] args){
-        String input = askUser() ;
-        String date = "03/23";
-        switch(input) {
-            case "e":
-                date = optionE();
-                break;
-            case "t":
-                optionT();
-                break;
-            case "n":
-                optionN(date);
-                break;
-            case "p":
-                // code block
-                break;
-            case "q":
-                // code block
-                break;
-            
-          }
-        
-    }
-
-    public static String askUser() {
-        try (Scanner scanner = new Scanner(System.in)) {
-            System.out.println("Please type a command");
-            System.out.println(" 't' to get todays date and display the todays calender");
-            System.out.println(" 'e' to enter date and display the corresponding calendar ");
-            System.out.println(" 'n' to display the next month");
-            System.out.println(" 'p' to display the previous month");
-            System.out.println(" 'q' to quit the program");
-            String input = scanner.next();
-            return input;
+        String command = "";
+        while (!command.equals("q")) {
+            Scanner scanner = new Scanner(System.in) 
+                command = askUser(scanner);
+                switch(command) {
+                    case "e":
+                        date = optionE(scanner);
+                        break;
+                    case "t":
+                        optionT();
+                        break;
+                    case "n":
+                        optionN(scanner, date);
+                        break;
+                    case "p":
+                        // code block
+                        break;
+                    case "q":
+                        // code block
+                        break;
+                    default:
+                        System.out.println("Please enter a valid command");
+                        break;
+                } 
         }
     }
 
-    public static String optionE() {
-        String date = askUserForDate();
-        // int month = monthFromDate(date);
-        // int day = dayFromDate(date);
-        // int lengthOfCalendar = 10*7 + 1;
+    public static String askUser(Scanner scanner) {
+        System.out.println("Please type a command");
+        System.out.println(" 't' to get todays date and display the todays calender");
+        System.out.println(" 'e' to enter date and display the corresponding calendar ");
+        System.out.println(" 'n' to display the next month");
+        System.out.println(" 'p' to display the previous month");
+        System.out.println(" 'q' to quit the program");
+        String input = scanner.nextLine();
+        return input;
+    }
 
-        // drawMonth(month, lengthOfCalendar);
-        // for ( int week = 0; week <= 4; week++) {
-        //     drawBorder(lengthOfCalendar);
-        //     printLast("=");
-        //     drawRow(week, 10); 
-        //  }
-        // drawBorder(lengthOfCalendar);
-        // printLast("=");
-        // displayDate(month, day);
+    public static String optionE(Scanner scanner) {
+        String date = askUserForDate(scanner);
+        int month = monthFromDate(date);
+        int day = dayFromDate(date);
+        int lengthOfCalendar = 10*7 + 1;
+
+        drawMonth(month, lengthOfCalendar);
+        for ( int week = 0; week <= 4; week++) {
+            drawBorder(lengthOfCalendar);
+            printLast("=");
+            drawRow(week, 10); 
+        }
+        drawBorder(lengthOfCalendar);
+        printLast("=");
+        displayDate(month, day);
         return date;
     }
 
@@ -61,13 +63,13 @@ public class CalendarPrinter2 {
 
     }
 
-    public static String optionN (String date) {
+    public static String optionN (Scanner scanner, String date) {
 
         String nextDate = "";
         
         if (date == ""){
             System.out.println("You need to enter the date in mm/dd format before choosing this option");
-            askUser();
+            askUser(scanner);
         } else {
             int nextMonth = 1;
             if (monthFromDate(date) != 12 ){
@@ -107,19 +109,22 @@ public class CalendarPrinter2 {
         System.out.println("Day: " + day);
     }
 
-    public static String askUserForDate() {
-        try (Scanner scanner = new Scanner(System.in)) {
+    public static String askUserForDate(Scanner scanner) {
+        System.out.println("What date would you like to look at? (mm/dd)");
+        //This is there we get trouble with scanner
+        String date = scanner.nextLine();
+        if (date.length() != 5) {
+            System.out.println("Sorry, that input is invalid.");
             System.out.println("What date would you like to look at? (mm/dd)");
-            String date = scanner.next();
-            if (date.length() != 5) {
-                System.out.println("Sorry, that input is invalid.");
-                System.out.println("What date would you like to look at? (mm/dd)");
-                date = scanner.next();
-            }
-            
-            return date;
+            date = scanner.next();
         }
+        
+        return date;
        
+    }
+
+    public static Calendar getCalendarFromString(String date) {
+        Calendar result = Calendar
     }
 
     public static int monthFromDate(String date) {
@@ -158,3 +163,4 @@ public class CalendarPrinter2 {
     }
     
 }
+
