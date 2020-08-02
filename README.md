@@ -1,4 +1,6 @@
 # printCalendar
+Command-line application
+
 
 Size 10:
 ```
@@ -67,7 +69,7 @@ Day: 23
 ```
 
 # Compile
-javac Calendar.java
+javac CalendarPrinter.java
 
 # Run
-java Calendar 
+java CalendarPrinter 
